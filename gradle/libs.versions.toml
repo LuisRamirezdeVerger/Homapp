@@ -1,6 +1,7 @@
 [versions]
 activityCompose = "1.10.1"
 agp = "8.8.2"
+androidxNavigationCompose = "2.5.0"
 compiler = "1.5.15"
 compilerVersion = "1.5.8"
 composeBom = "2025.02.00"
@@ -14,6 +15,7 @@ material = "1.12.0"
 kotlin = "1.9.22"
 coreKtx = "1.15.0"
 navigationCompose = "2.8.8"
+firebaseAuthKtx = "23.2.0"
 
 [libraries]
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
@@ -31,10 +33,12 @@ material = { group = "com.google.android.material", name = "material", version.r
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 material3 = { module = "androidx.compose.material3:material3" }
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+navigation-compose-v250 = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigationCompose" }
 ui = { module = "androidx.compose.ui:ui" }
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

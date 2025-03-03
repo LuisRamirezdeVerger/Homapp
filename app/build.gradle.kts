@@ -30,6 +30,7 @@ android {
     }
 
 
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -50,27 +51,29 @@ android {
 
 dependencies {
 
-    // Firebase
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.analytics)
-
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
 
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+
+
     // Jetpack Compose
     implementation(libs.compiler.v158)
-
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
 
     // Navigation con Compose
+    implementation (libs.navigation.compose.v250)
     implementation(libs.navigation.compose)
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.activity.compose)
     implementation(libs.compiler)
+    implementation(libs.firebase.auth.ktx)
 
     // Testing dependencies
     testImplementation(libs.junit)
