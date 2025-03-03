@@ -1,6 +1,8 @@
 [versions]
 activityCompose = "1.10.1"
 agp = "8.8.2"
+compiler = "1.5.15"
+compilerVersion = "1.5.8"
 composeBom = "2025.02.00"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -8,12 +10,14 @@ espressoCore = "3.6.1"
 appcompat = "1.7.0"
 lifecycleRuntimeCompose = "2.8.7"
 material = "1.12.0"
-kotlin = "1.9.24"
+kotlin = "1.9.22"
 coreKtx = "1.15.0"
 navigationCompose = "2.8.8"
 
 [libraries]
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+compiler = { module = "androidx.compose.compiler:compiler", version.ref = "compiler" }
+compiler-v158 = { module = "androidx.compose.compiler:compiler", version.ref = "compilerVersion" }
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

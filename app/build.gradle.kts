@@ -22,7 +22,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.4"
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
 
 
@@ -51,6 +51,8 @@ dependencies {
     implementation(libs.material)
 
     // Jetpack Compose
+    implementation(libs.compiler.v158)
+
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.tooling.preview)
@@ -60,6 +62,7 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.activity.compose)
+    implementation(libs.compiler)
 
     // Testing dependencies
     testImplementation(libs.junit)
