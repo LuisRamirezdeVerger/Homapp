@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "233243664976",
+    "project_id": "homapp-d8d1d",
+    "storage_bucket": "homapp-d8d1d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233243664976:android:a0aa60318fd04bd4fa6755",
+        "android_client_info": {
+          "package_name": "com.wito.homapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa41i2Ig0ObBrJEu4P6TrhiFgougbLRmA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
