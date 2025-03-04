@@ -15,6 +15,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.wito.homapp.MainScreen
 import com.wito.homapp.ui.theme.MyAppTheme
@@ -25,8 +27,16 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyAppTheme {
                 val navController = rememberNavController()
-                MainScreen(navController = navController)
-
+                NavHost(
+                    navController = navController,
+                    startDestination = "main"
+                ){
+                    composable("main") { MainScreen(navController) }
+                    composable("login") { LoginScreen(navController) }
+                    composable("register") { RegisterScreen(navController) }
+                }
+                //MainScreen(navController = navController)
+                //AuthStateHandler(navController)
             }
         }
     }
@@ -53,11 +63,11 @@ fun MainScreen(navController: NavHostController) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Button(onClick = { /* Acción 1 */ }) {
+            Button(onClick = {navController.navigate("login") }) {
                 Text("Iniciar Sesión")
             }
             Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = { /* Acción 2 */ }) {
+            Button(onClick = { navController.navigate("register") }) {
                 Text("Registrarse")
             }
             Spacer(modifier = Modifier.height(32.dp))
