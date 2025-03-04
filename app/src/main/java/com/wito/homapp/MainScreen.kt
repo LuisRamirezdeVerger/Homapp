@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.wito.homapp.MainScreen
 import com.wito.homapp.ui.theme.MyAppTheme
 
@@ -23,9 +24,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyAppTheme {
-                MainScreen(
-                    navController = TODO()
-                )
+                val navController = rememberNavController()
+                MainScreen(navController = navController)
+
             }
         }
     }

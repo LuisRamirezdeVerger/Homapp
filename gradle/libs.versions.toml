@@ -1,44 +1,58 @@
 [versions]
 activityCompose = "1.10.1"
 agp = "8.8.2"
-androidxNavigationCompose = "2.5.0"
-compiler = "1.5.15"
-compilerVersion = "1.5.8"
+androidxNavigationCompose = "2.8.8"
+compiler = "1.6.0"
+compilerVersion = "1.5.15"
 composeBom = "2025.02.00"
+firebaseAnalytics = "22.3.0"
+firebaseAuth = "23.2.0"
 firebaseBom = "33.10.0"
+firebaseFirestore = "25.1.2"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
+kotlinGradlePluginVersion = "1.9.23"
+kotlinStdlib = "2.0.21"
 lifecycleRuntimeCompose = "2.8.7"
 material = "1.12.0"
 kotlin = "1.9.22"
 coreKtx = "1.15.0"
 navigationCompose = "2.8.8"
 firebaseAuthKtx = "23.2.0"
+playServicesAuth = "21.3.0"
 
 [libraries]
-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "compiler" }
+activity-compose = { module = "androidx.activity:activity-compose", version = "1.10.1" }
+compiler = { module = "androidx.compose.compiler:compiler", version = "1.6.0" }
 compiler-v158 = { module = "androidx.compose.compiler:compiler", version.ref = "compilerVersion" }
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
-firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-auth = { module = "com.google.firebase:firebase-auth", version = "21.0.0" }
+firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx", version = "21.0.0" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version = "33.0.0" }
+firebase-firestore = { module = "com.google.firebase:firebase-firestore", version.ref = "firebaseFirestore" }
+google-firebase-analytics = { module = "com.google.firebase:firebase-analytics", version.ref = "firebaseAnalytics" }
+jetbrains-kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePluginVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version = "1.9.22" }
 lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-material3 = { module = "androidx.compose.material3:material3" }
-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+material3 = { module = "androidx.compose.material3:material3", version = "1.1.0" }
+navigation-compose = { module = "androidx.navigation:navigation-compose", version = "2.5.3" }
 navigation-compose-v250 = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigationCompose" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version = "21.3.0" }
+play-services-measurement = { module = "com.google.android.gms:play-services-measurement", version = "22.3.0" }
+play-services-measurement-api = { module = "com.google.android.gms:play-services-measurement-api", version = "22.3.0" }
 ui = { module = "androidx.compose.ui:ui" }
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
-firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
