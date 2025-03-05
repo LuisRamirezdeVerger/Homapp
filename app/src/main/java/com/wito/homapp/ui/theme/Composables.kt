@@ -1,17 +1,43 @@
 package com.wito.homapp.ui
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.provider.Settings.Global.getString
+import android.provider.Settings.Secure.getString
+import android.provider.Settings.System.getString
+import android.util.Log
+import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.wito.homapp.registerUser
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.app.ActivityCompat.startActivityForResult
+import androidx.core.content.ContextCompat.getString
+import androidx.core.content.res.TypedArrayUtils.getString
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.wito.homapp.MainScreen
+import com.wito.homapp.R
+import io.grpc.internal.JsonUtil.getString
+//import kotlinx.coroutines.flow.internal.NoOpContinuation.context
+//import kotlin.coroutines.jvm.internal.CompletedContinuation.context
 
 @Composable
 fun RegisterScreen() {
@@ -59,6 +85,64 @@ fun InputField(value: String, onValueChange: (String) -> Unit, label: String, is
 fun AppButton(text: String, onClick: () -> Unit) {
     Button(onClick = onClick) {
         Text(text)
+    }
+}
+
+@Composable
+fun GoogleSignInButton(onClick: () -> Unit){
+    Button(
+        onClick = onClick,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.White,
+            contentColor = Color.Black
+        )
+    ) {
+        Row (
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ){
+            Icon (
+                painter = painterResource(id = R.drawable.google_icon),
+                contentDescription = "Google Icon",
+                modifier = Modifier.size(24.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text("Continuar con Google")
+        }
+    }
+}
+
+@Composable
+fun signInWithGoogle(context: Context, googleSignInLauncher: ActivityResultLauncher<Intent>) {
+    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        .requestIdToken(context.getString(R.string.default_web_client_id)) // ID del cliente de google-services.json
+        .requestEmail()
+        .build()
+
+    val googleSignInClient: GoogleSignInClient = GoogleSignIn.getClient(context, gso)
+    val signInIntent = googleSignInClient.signInIntent
+    googleSignInLauncher.launch(signInIntent)
+}
+
+private fun handleGoogleSignInResult(data: Intent?, auth: FirebaseAuth) {
+    val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+    try {
+        val account = task.getResult(ApiException::class.java)
+        val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
+
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("GoogleSignIn", "Inicio de sesión exitoso: ${auth.currentUser?.email}")
+                } else {
+                    Log.e("GoogleSignIn", "Error al iniciar sesión con Google", task.exception)
+                }
+            }
+    } catch (e: ApiException) {
+        Log.e("GoogleSignIn", "Error en el inicio de sesión: ${e.statusCode}")
     }
 }
 

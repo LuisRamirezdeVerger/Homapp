@@ -24,6 +24,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.wito.homapp.ui.GoogleSignInButton
 
 @Composable
 fun RegisterScreen(navController: NavHostController) {
@@ -81,6 +82,8 @@ fun RegisterScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(16.dp))
             Text(text = errorMessage!!, color = Color.Red)
         }
+        Spacer(modifier = Modifier.height(16.dp))
+        GoogleSignInButton(onClick = { signInWithGoogle(navController)})
     }
 }
 

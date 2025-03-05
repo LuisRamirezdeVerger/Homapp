@@ -12,7 +12,12 @@
           "package_name": "com.wito.homapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "233243664976-eoo7iajjsbh13mo6n9n6hh3rk9n4o0oc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAa41i2Ig0ObBrJEu4P6TrhiFgougbLRmA"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "233243664976-eoo7iajjsbh13mo6n9n6hh3rk9n4o0oc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
