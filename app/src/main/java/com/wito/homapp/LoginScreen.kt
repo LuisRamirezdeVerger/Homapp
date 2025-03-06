@@ -81,7 +81,7 @@ fun signInWithEmailAndPassword(
     auth.signInWithEmailAndPassword(email, password)
         .addOnCompleteListener{ task ->
             if (task.isSuccessful){
-                navController.navigate("main")
+                navController.navigate("home")
             } else {
                 onError(task.exception?.message ?: "Error desconcido")
             }
