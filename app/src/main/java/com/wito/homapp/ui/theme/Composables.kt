@@ -7,17 +7,26 @@ import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.wito.homapp.registerUser
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -138,6 +147,36 @@ private fun handleGoogleSignInResult(data: Intent?, auth: FirebaseAuth) {
         Log.e("GoogleSignIn", "Error en el inicio de sesión: ${e.statusCode}")
     }
 }
+
+@Composable
+fun BottomNavBar(navHostController: NavHostController){
+    val items = listOf(
+        NavItem("Buscar", Icons.Default.Search, "search"),
+        NavItem("Servicios", Icons.Default.Build, "services"),
+        NavItem("Chat", Icons.Default.Call, "chat"),
+        NavItem("Favoritos", Icons.Default.Favorite, "favorites"),
+        NavItem("Perfil", Icons.Default.Person, "profile")
+    )
+
+    NavigationBar {
+        val currentRoute = navHostController.currentBackStackEntryAsState().value?.destination?.route
+        items.forEach{ items ->
+            NavigationBarItem(
+                icon = { Icon (items.icon, contentDescription = items.label) },
+                label = {Text (items.label)},
+                selected = currentRoute == items.route,
+                onClick = {
+                    navHostController.navigate(items.route) {
+                        popUpTo(navHostController.graph.startDestinationId){saveState = true}
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                }
+            )
+        }
+    }
+}
+data class NavItem(val label: String, val icon: ImageVector, val route: String)
 
 @Preview(showBackground = true)
 @Composable
