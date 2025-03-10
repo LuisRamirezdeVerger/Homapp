@@ -37,6 +37,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.ktx.Firebase
 import com.wito.homapp.MainScreen
 import com.wito.homapp.R
 
@@ -184,6 +185,7 @@ fun BottomNavBar(navHostController: NavHostController){
     }
 }
 data class NavItem(val label: String, val icon: ImageVector, val route: String)
+
 
 
 @Preview(showBackground = true)
