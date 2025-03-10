@@ -18,6 +18,17 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Homapp"
         tools:targetApi="31">
+        <!-- Google Sign-In Config -->
+        <meta-data
+            android:name="com.google.android.gms.auth.api.credentials.CREDENTIALS_API"
+            android:value="true" />
+        <meta-data
+            android:name="com.google.android.gms.auth.api.signin.SIGN_IN_API"
+            android:value="true" />
+        <!-- Firebase config -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/google_icon" />
 
         <!-- Actividad principal de la aplicación -->
         <activity

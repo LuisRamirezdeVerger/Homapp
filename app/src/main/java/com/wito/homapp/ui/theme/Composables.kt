@@ -120,35 +120,40 @@ fun GoogleSignInButton(onClick: () -> Unit){
 }
 
 
-fun signInWithGoogle(context: Context, googleSignInLauncher: ActivityResultLauncher<Intent>) {
+fun signInWithGoogle(
+    context: Context,
+    googleSignInlauncher: ActivityResultLauncher<Intent>,
+    //auth: FirebaseAuth,
+    //navController: NavHostController
+) {
     val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestIdToken(context.getString(R.string.default_web_client_id)) // ID del cliente de google-services.json
+        .requestIdToken(context.getString(R.string.default_web_client_id)) // Obtén el ID del cliente desde google-services.json
         .requestEmail()
         .build()
 
-    val googleSignInClient: GoogleSignInClient = GoogleSignIn.getClient(context, gso)
+    val googleSignInClient = GoogleSignIn.getClient(context, gso)
     val signInIntent = googleSignInClient.signInIntent
-    googleSignInLauncher.launch(signInIntent)
+    googleSignInlauncher.launch(signInIntent)
 }
 
-private fun handleGoogleSignInResult(data: Intent?, auth: FirebaseAuth) {
-    val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-    try {
-        val account = task.getResult(ApiException::class.java)
-        val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
-
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d("GoogleSignIn", "Inicio de sesión exitoso: ${auth.currentUser?.email}")
-                } else {
-                    Log.e("GoogleSignIn", "Error al iniciar sesión con Google", task.exception)
-                }
-            }
-    } catch (e: ApiException) {
-        Log.e("GoogleSignIn", "Error en el inicio de sesión: ${e.statusCode}")
-    }
-}
+//private fun handleGoogleSignInResult(data: Intent?, auth: FirebaseAuth) {
+//    val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+//    try {
+//        val account = task.getResult(ApiException::class.java)
+//        val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
+//
+//        auth.signInWithCredential(credential)
+//            .addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                    Log.d("GoogleSignIn", "Inicio de sesión exitoso: ${auth.currentUser?.email}")
+//                } else {
+//                    Log.e("GoogleSignIn", "Error al iniciar sesión con Google", task.exception)
+//                }
+//            }
+//    } catch (e: ApiException) {
+//        Log.e("GoogleSignIn", "Error en el inicio de sesión: ${e.statusCode}")
+//    }
+//}
 
 @Composable
 fun BottomNavBar(navHostController: NavHostController){

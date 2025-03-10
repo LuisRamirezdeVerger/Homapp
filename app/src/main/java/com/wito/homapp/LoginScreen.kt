@@ -81,9 +81,11 @@ fun signInWithEmailAndPassword(
     auth.signInWithEmailAndPassword(email, password)
         .addOnCompleteListener{ task ->
             if (task.isSuccessful){
-                navController.navigate("home")
+                navController.navigate("home"){
+                    popUpTo("login") {inclusive = true} //Evitamos volver a la pantalla de login
+                }
             } else {
-                onError(task.exception?.message ?: "Error desconcido")
+                onError(task.exception?.message ?: "Error desconocido")
             }
         }
 }
