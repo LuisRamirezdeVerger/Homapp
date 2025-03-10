@@ -69,6 +69,9 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
 
+    //Materiall Theme
+    implementation("io.coil-kt:coil-compose:2.2.2")
+
     // Navigation con Compose
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
