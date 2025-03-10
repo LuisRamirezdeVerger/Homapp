@@ -64,6 +64,18 @@ fun LoginScreen (navController: NavController){
             }) {
             Text("Iniciar sesión")
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = {
+                navController.navigate("main") {
+                    popUpTo("login") {inclusive = true}
+                }
+            }
+        ) {
+            Text("Volver")
+        }
         if (errorMessage != null){
             Spacer(modifier = Modifier.height(16.dp))
             Text(text = errorMessage!!)
