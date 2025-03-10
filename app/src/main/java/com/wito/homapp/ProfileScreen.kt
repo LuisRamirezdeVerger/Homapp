@@ -40,13 +40,13 @@ fun ProfileScreen(navController: NavHostController){
 }
 
 fun signOut(auth: FirebaseAuth, context: Context, navController: NavHostController) {
-    // 1. Cerrar sesión de Firebase
+    // Cierra sesión en Firebase
     auth.signOut()
 
-    // 2. Cerrar sesión de Google
+    // Cierra sesión en Google
     val googleSignInClient = GoogleSignIn.getClient(context, GoogleSignInOptions.DEFAULT_SIGN_IN)
     googleSignInClient.signOut().addOnCompleteListener {
-        // 3. Redirigir al usuario a la pantalla principal (o login)
+        // Redirigr al usuario a la pantalla principal de login/registro
         navController.navigate("Main") {
             popUpTo("profile") { inclusive = true } // Evitar volver al perfil
         }

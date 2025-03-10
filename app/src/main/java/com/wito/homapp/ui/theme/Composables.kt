@@ -2,11 +2,7 @@ package com.wito.homapp.ui
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
-import androidx.activity.compose.ManagedActivityResultLauncher
-import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
@@ -26,23 +22,13 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.wito.homapp.registerUser
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.AuthCredential
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.ktx.Firebase
 import com.wito.homapp.MainScreen
 import com.wito.homapp.R
-
-//import kotlinx.coroutines.flow.internal.NoOpContinuation.context
-//import kotlin.coroutines.jvm.internal.CompletedContinuation.context
 
 @Composable
 fun RegisterScreen() {
@@ -136,25 +122,6 @@ fun signInWithGoogle(
     val signInIntent = googleSignInClient.signInIntent
     googleSignInlauncher.launch(signInIntent)
 }
-
-//private fun handleGoogleSignInResult(data: Intent?, auth: FirebaseAuth) {
-//    val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-//    try {
-//        val account = task.getResult(ApiException::class.java)
-//        val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
-//
-//        auth.signInWithCredential(credential)
-//            .addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    Log.d("GoogleSignIn", "Inicio de sesión exitoso: ${auth.currentUser?.email}")
-//                } else {
-//                    Log.e("GoogleSignIn", "Error al iniciar sesión con Google", task.exception)
-//                }
-//            }
-//    } catch (e: ApiException) {
-//        Log.e("GoogleSignIn", "Error en el inicio de sesión: ${e.statusCode}")
-//    }
-//}
 
 @Composable
 fun BottomNavBar(navHostController: NavHostController){

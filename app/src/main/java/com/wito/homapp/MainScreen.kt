@@ -26,13 +26,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.wito.homapp.ui.GoogleSignInButton
@@ -119,48 +117,6 @@ fun MainScreen(navController: NavHostController) {
     }
 }
 
-//fun signInWithGoogle(
-//    context: Context,
-//    launcher: ActivityResultLauncher<Intent>,
-//    auth: FirebaseAuth,
-//    navController: NavHostController
-//    ) {
-//    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//        .requestIdToken(context.getString(R.string.default_web_client_id)) // Obtén el ID del cliente desde google-services.json
-//        .requestEmail()
-//        .build()
-//
-//    val googleSignInClient = GoogleSignIn.getClient(context, gso)
-//    val signInIntent = googleSignInClient.signInIntent
-//    launcher.launch(signInIntent)
-//}
-
-//fun handleGoogleSignInResult(data: Intent?, auth: FirebaseAuth, navController: NavHostController) {
-//    val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-//    try {
-//        val account = task.getResult(ApiException::class.java)
-//        val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
-//
-//        auth.signInWithCredential(credential)
-//            .addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    Log.d("GoogleSignIn", "Inicio de sesión exitoso: ${auth.currentUser?.email}")
-//                    Log.d("GoogleSignIn", "Usuario autenticado: ${auth.currentUser?.displayName}")
-//                    navController.navigate("home") { // Navega a la pantalla principal
-//                        popUpTo("login") {inclusive = true}
-//                    }
-//
-//                } else {
-//                    Log.e("GoogleSignIn", "Error al iniciar sesión con Google", task.exception)
-//                    Log.e("GoogleSignIn", "Error: ${task.exception?.localizedMessage}")
-//                }
-//            }
-//    } catch (e: ApiException) {
-//        Log.e("GoogleSignIn", "Error en el inicio de sesión: ${e.statusCode}")
-//        Log.e("GoogleSignIn", "ApiException: ${e.message}")
-//    }
-//}
-
 fun handleGoogleSignInResult(data: Intent?, auth: FirebaseAuth, navController: NavHostController) {
     Log.d("GoogleSignIn", "Intent recibido, procesando...") // 👈 DEBUG
 
@@ -176,7 +132,7 @@ fun handleGoogleSignInResult(data: Intent?, auth: FirebaseAuth, navController: N
                     val user = auth.currentUser
                     Log.d("GoogleSignIn", "Inicio de sesión exitoso: ${user?.email}")
 
-                    // 🔹 Si el usuario es nuevo, agrégalo a la base de datos
+                    // Si el usuario es nuevo, lo agrega a la base de datos
                     if (task.result?.additionalUserInfo?.isNewUser == true) {
                         Log.d("GoogleSignIn", "Usuario nuevo detectado, registrándolo...")
                         registerUserInDatabase(user)
@@ -192,7 +148,7 @@ fun handleGoogleSignInResult(data: Intent?, auth: FirebaseAuth, navController: N
     }
 }
 
-// 🔹 Función para registrar usuario en la base de datos si es nuevo
+// Función para registrar usuario en la base de datos si es nuevo
 fun registerUserInDatabase(user: FirebaseUser?) {
     user?.let {
         val db = Firebase.firestore
@@ -209,8 +165,6 @@ fun registerUserInDatabase(user: FirebaseUser?) {
             .addOnFailureListener { e -> Log.e("GoogleSignIn", "Error al registrar usuario: ${e.message}") }
     }
 }
-
-
 
 
 @Preview(showBackground = true)

@@ -9,8 +9,8 @@ import com.google.firebase.ktx.Firebase
 fun AuthStateHandler(navController: NavHostController) {
     val authState = Firebase.auth.currentUser != null
     if (authState) {
-        MainScreen(navController) // Usuario autenticado
+        MainScreen(navController) // Usuario autentificado
     } else {
-        LoginScreen(navController) // Usuario no autenticado
+        LoginScreen(navController) // Usuario no autentificado
     }
 }
