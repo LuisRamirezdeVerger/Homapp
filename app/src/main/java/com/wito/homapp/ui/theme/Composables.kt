@@ -142,7 +142,8 @@ fun BottomNavBar(navHostController: NavHostController){
                 selected = currentRoute == items.route,
                 onClick = {
                     navHostController.navigate(items.route) {
-                        popUpTo(navHostController.graph.startDestinationId){saveState = true}
+                        //popUpTo(navHostController.graph.startDestinationId){saveState = true}
+                        popUpTo("home") {inclusive = false}
                         launchSingleTop = true
                         restoreState = true
                     }

@@ -53,10 +53,6 @@ fun ProfileScreen(navController: NavHostController){
 
     //val navController = rememberNavController()
 
-
-
-
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -125,7 +121,7 @@ fun signOut(auth: FirebaseAuth, context: Context, navController: NavHostControll
     googleSignInClient.signOut().addOnCompleteListener {
         // Redirigr al usuario a la pantalla principal de login/registro
         navController.navigate("Main") {
-            popUpTo("profile") { inclusive = true } // Evitar volver al perfil
+            popUpTo("home") { inclusive = true } // Evitar volver al perfil
         }
     }
 }
